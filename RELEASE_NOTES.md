@@ -6,3 +6,6 @@
 
 ## snapshot 0.2.0
 * implemented Command Pattern for handling telegramBot
+
+## snapshot 0.3.0
+* added deployment process to the project
