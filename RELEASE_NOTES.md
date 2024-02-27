@@ -9,3 +9,6 @@
 
 ## snapshot 0.3.0
 * added deployment process to the project
+
+## snapshot 0.4.0
+* added repository layer for Robert's telegram bot
