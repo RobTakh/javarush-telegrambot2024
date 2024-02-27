@@ -20,7 +20,7 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Connect to PostgreSQL
-      uses: robert/postgresql-action@v1
+      uses: harmon578/postgresql-action@v1
       with:
         postgresql version: '12'
         postgresql db: 'dev_jrtb_db'
