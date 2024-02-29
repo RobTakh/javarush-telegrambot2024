@@ -1,6 +1,7 @@
 package com.github.javarushcommunity.jrtb.command;
 
 import com.github.javarushcommunity.jrtb.service.SendBotMessageService;
+import com.github.javarushcommunity.jrtb.service.TelegramUserService;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -12,12 +13,13 @@ public class CommandContainer {
     private final Map<String, Command> commandHashMap;
     private final Command unknownCommand;
 
-    public CommandContainer(SendBotMessageService sendBotMessageService) {
+    public CommandContainer(SendBotMessageService sendBotMessageService, TelegramUserService telegramUserService) {
         commandHashMap = new HashMap<>();
-        commandHashMap.put(START.getCommandName(), new StartCommand(sendBotMessageService));
-        commandHashMap.put(STOP.getCommandName(), new StopCommand(sendBotMessageService));
+        commandHashMap.put(START.getCommandName(), new StartCommand(sendBotMessageService, telegramUserService));
+        commandHashMap.put(STOP.getCommandName(), new StopCommand(sendBotMessageService, telegramUserService));
         commandHashMap.put(HELP.getCommandName(), new HelpCommand(sendBotMessageService));
         commandHashMap.put(NO.getCommandName(), new NoCommand(sendBotMessageService));
+        commandHashMap.put(STAT.getCommandName(), new StatCommand(sendBotMessageService, telegramUserService));
 
         unknownCommand = new UnknownCommand(sendBotMessageService);
     }

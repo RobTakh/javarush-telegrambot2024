@@ -1,10 +1,23 @@
 version: '3.1'
 
 services:
-  jrtb:
+  jrtb-robert-bot:
+    depends_on:
+      - jrtb-db
     build:
       context: .
     environment:
-      - BOT_NAME=${BOT_NAME}
-      - BOT_TOKEN=${BOT_TOKEN}
+      BOT_NAME: ${BOT_NAME}
+      BOT_TOKEN: ${BOT_TOKEN}
+      BOT_DB_USERNAME: ${BOT_DB_USERNAME}
+      BOT_DB_PASSWORD: ${BOT_DB_PASSWORD}
     restart: always
+  jrtb-db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_DB: 'jrtb_db'
+      POSTGRES_USER: ${BOT_DB_USERNAME}
+      POSTGRES_PASSWORD: ${BOT_DB_PASSWORD}
+    ports:
+      - '5432:5432'
