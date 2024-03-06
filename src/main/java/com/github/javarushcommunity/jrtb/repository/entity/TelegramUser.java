@@ -30,7 +30,7 @@ public class TelegramUser {
         this.chatId = chatId;
     }
 
-    public Boolean getActive() {
+    public Boolean isActive() {
         return this.active;
     }
 

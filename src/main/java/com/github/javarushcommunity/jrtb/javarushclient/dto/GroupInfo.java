@@ -1,6 +1,8 @@
 package com.github.javarushcommunity.jrtb.javarushclient.dto;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import lombok.ToString;
 
 /**
@@ -8,6 +10,8 @@ import lombok.ToString;
  */
 @Data
 @ToString
+@Getter
+@Setter
 public class GroupInfo {
     private String avatarUrl;
     private String createTime;
@@ -22,5 +26,4 @@ public class GroupInfo {
     private GroupInfoType type;
     private Integer usersCount;
     private GroupVisibilityStatus visibilityStatus;
-
 }

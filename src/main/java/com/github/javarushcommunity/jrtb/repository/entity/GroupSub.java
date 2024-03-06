@@ -42,11 +42,23 @@ public class GroupSub {
         return title;
     }
 
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
     public Integer getId() {
         return id;
     }
 
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
     public Integer getLastArticleId() {
         return lastArticleId;
+    }
+
+    public List<TelegramUser> getUsers() {
+        return users;
     }
 }
