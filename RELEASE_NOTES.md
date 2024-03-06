@@ -12,3 +12,6 @@
 
 ## snapshot 0.4.0
 * added repository layer for Robert's telegram bot
+
+## snapshot 0.5.0
+* added ability to subscribe on group and to get the list of group subscriptions
