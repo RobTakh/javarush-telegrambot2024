@@ -2,14 +2,18 @@ package com.github.javarushcommunity.jrtb.repository.entity;
 
 
 import jakarta.persistence.*;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import java.util.List;
 
 /**
  * Telegram User entity
  */
+@Data
 @Entity
 @Table(name = "tg_user")
+@EqualsAndHashCode(exclude = "groupSubs")
 public class TelegramUser {
 
     @Id
@@ -21,28 +25,4 @@ public class TelegramUser {
 
     @ManyToMany(mappedBy = "users", fetch = FetchType.EAGER)
     private List<GroupSub> groupSubs;
-
-    public String getChatId() {
-        return this.chatId;
-    }
-
-    public void setChatId(String chatId) {
-        this.chatId = chatId;
-    }
-
-    public Boolean isActive() {
-        return this.active;
-    }
-
-    public void setActive(Boolean active) {
-        this.active = active;
-    }
-
-    public List<GroupSub> getGroupSubs() {
-        return this.groupSubs;
-    }
-
-    public void setGroupSubs(List<GroupSub> groupSubList) {
-        this.groupSubs = groupSubList;
-    }
 }
