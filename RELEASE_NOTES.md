@@ -15,3 +15,6 @@
 
 ## snapshot 0.5.0
 * added ability to subscribe on group and to get the list of group subscriptions
+
+## snapshot 0.6.0
+* added ability to delete the subscribe on group
