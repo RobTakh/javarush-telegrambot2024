@@ -29,6 +29,7 @@ public class CommandContainer {
         commandHashMap.put(STAT.getCommandName(), new StatCommand(sendBotMessageService, telegramUserService));
         commandHashMap.put(ADD_GROUP_SUB.getCommandName(), new AddGroupSubCommand(sendBotMessageService, javarushGroupClient, groupSubService));
         commandHashMap.put(LIST_GROUP_SUB.getCommandName(), new ListGroupSubCommand(sendBotMessageService, telegramUserService));
+        commandHashMap.put(DELETE_GROUP_SUB.getCommandName(), new DeleteGroupSubCommand(sendBotMessageService, telegramUserService, groupSubService));
 
         unknownCommand = new UnknownCommand(sendBotMessageService);
     }
