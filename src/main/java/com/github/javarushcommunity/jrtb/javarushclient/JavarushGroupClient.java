@@ -43,4 +43,12 @@ public interface JavarushGroupClient {
      * @return                  the {@link GroupDiscussionInfo} object
      */
     GroupDiscussionInfo getGroupById(Integer id);
+
+    /**
+     * Find ID of the newest article of subscription group
+     *
+     * @param groupSub
+     * @return
+     */
+    Integer findLastArticleId(Integer groupSub);
 }

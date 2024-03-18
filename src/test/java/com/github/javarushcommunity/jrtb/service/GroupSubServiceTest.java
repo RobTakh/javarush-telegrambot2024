@@ -1,5 +1,6 @@
 package com.github.javarushcommunity.jrtb.service;
 
+import com.github.javarushcommunity.jrtb.javarushclient.JavarushGroupClient;
 import com.github.javarushcommunity.jrtb.javarushclient.dto.GroupDiscussionInfo;
 import com.github.javarushcommunity.jrtb.repository.GroupSubRepository;
 import com.github.javarushcommunity.jrtb.repository.entity.GroupSub;
@@ -18,6 +19,7 @@ public class GroupSubServiceTest {
     private GroupSubService groupSubService;
     private GroupSubRepository groupSubRepository;
     private TelegramUser newUser;
+    private JavarushGroupClient javarushGroupClient;
 
     private final static String CHAT_ID = "1";
 
@@ -25,7 +27,7 @@ public class GroupSubServiceTest {
     public void init() {
         TelegramUserService telegramUserService = Mockito.mock(TelegramUserService.class);
         groupSubRepository = Mockito.mock(GroupSubRepository.class);
-        groupSubService = new GroupSubServiceImpl(groupSubRepository, telegramUserService);
+        groupSubService = new GroupSubServiceImpl(groupSubRepository, telegramUserService, javarushGroupClient);
 
         newUser = new TelegramUser();
         newUser.setActive(true);
