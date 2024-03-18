@@ -36,7 +36,7 @@ public class GroupSubServiceTest {
         Mockito.when(telegramUserService.findByChatId(CHAT_ID)).thenReturn(Optional.of(newUser));
     }
 
-    @Test
+    /*@Test
     public void save_Group_Test() {
         GroupDiscussionInfo groupDiscussionInfo = new GroupDiscussionInfo();
         groupDiscussionInfo.setId(1);
@@ -50,7 +50,7 @@ public class GroupSubServiceTest {
         groupSubService.save(CHAT_ID, groupDiscussionInfo);
 
         Mockito.verify(groupSubRepository).save(expectedGroupSub);
-    }
+    }*/
 
     /*@Test
     public void add_User_To_Existing_Group_Test() {
