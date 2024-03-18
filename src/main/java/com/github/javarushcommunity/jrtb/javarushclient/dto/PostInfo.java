@@ -15,7 +15,7 @@ public class PostInfo {
     private AuthorInfo authorInfo;
     private Integer commentsCount;
     private String content;
-    private Integer createdTime;
+    private Long createdTime;
     private String description;
     private GroupInfo groupInfo;
     private Integer id;
@@ -28,7 +28,7 @@ public class PostInfo {
     private Integer ratingCount;
     private String title;
     private PostType type;
-    private Integer updatedTime;
+    private Long updatedTime;
     private UserDiscussInfo userDiscussInfo;
     private Integer views;
     private VisibilityStatus visibilityStatus;

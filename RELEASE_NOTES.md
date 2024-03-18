@@ -18,3 +18,6 @@
 
 ## snapshot 0.6.0
 * added ability to delete the subscribe on group
+
+## snapshot 0.7.0
+* added ability to send notifications for client of bot with new articles of subscription group
