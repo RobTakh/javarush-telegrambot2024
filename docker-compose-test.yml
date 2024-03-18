@@ -19,3 +19,6 @@ services:
       POSTGRES_PASSWORD: 'qwerty'
     ports:
       - '5432:5432'
+    expose:
+      - '5432'
+    command: --character-set-server=utf8 --collation-server=utf8_general_ci

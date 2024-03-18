@@ -3,8 +3,11 @@ package com.github.javarushcommunity.jrtb.service;
 import com.github.javarushcommunity.jrtb.bot.JavarushTelegramBot;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
+
+import java.util.List;
 
 @Service
 public class SendBotMessageServiceImpl implements SendBotMessageService {
@@ -28,5 +31,14 @@ public class SendBotMessageServiceImpl implements SendBotMessageService {
             // Will format this place due to increase of my project
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public void sendMessage(String chatId, List<String> messages) {
+        if (CollectionUtils.isEmpty(messages)) {
+            return;
+        }
+
+        messages.forEach(m -> sendMessage(chatId, m));
     }
 }

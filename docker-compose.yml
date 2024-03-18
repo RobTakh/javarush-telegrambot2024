@@ -20,4 +20,6 @@ services:
       POSTGRES_USER: ${BOT_DB_USERNAME}
       POSTGRES_PASSWORD: ${BOT_DB_PASSWORD}
     ports:
-      - '5432:5432'
+      - '3306:3306'
+    expose:
+      - '3306'
