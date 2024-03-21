@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
 import java.util.Arrays;
+import java.util.Collections;
 
 @DisplayName("Test for CommandContainer")
 public class CommandContainerTest {
@@ -23,15 +24,20 @@ public class CommandContainerTest {
         TelegramUserService telegramUserService = Mockito.mock(TelegramUserService.class);
         JavarushGroupClient javarushGroupClient = Mockito.mock(JavarushGroupClient.class);
         GroupSubService groupSubService = Mockito.mock(GroupSubService.class);
-        commandContainer = new CommandContainer(sendBotMessageService, telegramUserService,
-                javarushGroupClient, groupSubService);
+        commandContainer = new CommandContainer(
+                sendBotMessageService,
+                telegramUserService,
+                javarushGroupClient,
+                groupSubService,
+                Collections.singletonList("username")
+        );
     }
 
     @Test
     public void get_All_The_Existing_Commnads_Test() {
         Arrays.stream(CommandName.values())
                 .forEach(commandName -> {
-                    Command command = commandContainer.retrieveCommand(commandName.getCommandName());
+                    Command command = commandContainer.retrieveCommand(commandName.getCommandName(), "username");
                     Assertions.assertNotEquals(UnknownCommand.class, command.getClass());
                 });
     }
@@ -40,7 +46,7 @@ public class CommandContainerTest {
     public void get_Return_Unknown_Command_Test() {
         String unknownCommand = "/hiuhiuhoi";
 
-        Command command = commandContainer.retrieveCommand(unknownCommand);
+        Command command = commandContainer.retrieveCommand(unknownCommand, "username");
 
         Assertions.assertEquals(UnknownCommand.class, command.getClass());
     }

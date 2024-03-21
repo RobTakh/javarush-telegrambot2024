@@ -11,6 +11,9 @@ import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
+import java.util.Collections;
+import java.util.List;
+
 import static com.github.javarushcommunity.jrtb.command.CommandName.*;
 
 /**
@@ -32,13 +35,15 @@ public class JavarushTelegramBot extends TelegramLongPollingBot {
     public JavarushTelegramBot(
             TelegramUserService telegramUserService,
             JavarushGroupClient javarushGroupClient,
-            GroupSubService groupSubService
-    ) {
+            GroupSubService groupSubService,
+            @Value("#{'${bot.admins}'.split(',')}") List<String> admins
+            ) {
         this.commandContainer = new CommandContainer(
                 new SendBotMessageServiceImpl(this),
                 telegramUserService,
                 javarushGroupClient,
-                groupSubService);
+                groupSubService,
+                admins);
     }
     @Override
     public void onUpdateReceived(Update update) {
@@ -47,9 +52,15 @@ public class JavarushTelegramBot extends TelegramLongPollingBot {
             if (message.startsWith(COMMAND_PREFIX)) {
                 String commandIdentifier = message.split(" ")[0].toLowerCase();
 
-                commandContainer.retrieveCommand(commandIdentifier).execute(update);
+                commandContainer.retrieveCommand(
+                        commandIdentifier,
+                        username
+                ).execute(update);
             } else {
-                commandContainer.retrieveCommand(NO.getCommandName()).execute(update);
+                commandContainer.retrieveCommand(
+                        NO.getCommandName(),
+                        username
+                ).execute(update);
             }
         }
     }
