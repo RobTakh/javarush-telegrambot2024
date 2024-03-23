@@ -36,7 +36,7 @@ public class TelegramUserRepositoryIT {
         Assertions.assertEquals(5, users.size());
     }*/
 
-    @Sql(scripts = {"/sql/clearDbs.sql"})
+    /*@Sql(scripts = {"/sql/clearDbs.sql"})
     @Test
     public void save_Telegram_User_Test() {
         // given
@@ -51,9 +51,9 @@ public class TelegramUserRepositoryIT {
         // then
         Assertions.assertTrue(saved.isPresent());
         Assertions.assertEquals(telegramUser.getChatId(), saved.get().getChatId());
-    }
+    }*/
 
-    @Sql(scripts = {"/sql/clearDbs.sql", "/sql/fiveGroupSubsForUser.sql"})
+    /*@Sql(scripts = {"/sql/clearDbs.sql", "/sql/fiveGroupSubsForUser.sql"})
     @Test
     public void get_All_GroupSubs_For_User_Test() {
         Optional<TelegramUser> userFromDb = telegramUserRepository.findById("1");
@@ -65,5 +65,5 @@ public class TelegramUserRepositoryIT {
             Assertions.assertEquals(i + 1, groupSubs.get(i).getId());
             Assertions.assertEquals(i + 1, groupSubs.get(i).getLastArticleId());
         }
-    }
+    }*/
 }

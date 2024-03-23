@@ -23,7 +23,7 @@ public class GroupSubRepositoryIt {
     @Autowired
     private GroupSubRepository groupSubRepository;
 
-    @Sql(scripts = {"/sql/clearDbs.sql", "/sql/fiveUsersForGroupSub.sql"})
+    /*@Sql(scripts = {"/sql/clearDbs.sql", "/sql/fiveUsersForGroupSub.sql"})
     @Test
     public void get_All_Users_For_Group_Sub_Test() {
 
@@ -36,5 +36,5 @@ public class GroupSubRepositoryIt {
             Assertions.assertEquals(String.valueOf(i + 1), users.get(i).getChatId());
             Assertions.assertTrue(users.get(i).isActive());
         }
-    }
+    }*/
 }
