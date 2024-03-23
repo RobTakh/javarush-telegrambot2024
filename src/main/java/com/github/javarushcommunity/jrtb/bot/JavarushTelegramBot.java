@@ -4,6 +4,7 @@ import com.github.javarushcommunity.jrtb.command.CommandContainer;
 import com.github.javarushcommunity.jrtb.javarushclient.JavarushGroupClient;
 import com.github.javarushcommunity.jrtb.service.GroupSubService;
 import com.github.javarushcommunity.jrtb.service.SendBotMessageServiceImpl;
+import com.github.javarushcommunity.jrtb.service.StatisticService;
 import com.github.javarushcommunity.jrtb.service.TelegramUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -36,19 +37,22 @@ public class JavarushTelegramBot extends TelegramLongPollingBot {
             TelegramUserService telegramUserService,
             JavarushGroupClient javarushGroupClient,
             GroupSubService groupSubService,
-            @Value("#{'${bot.admins}'.split(',')}") List<String> admins
+            @Value("#{'${bot.admins}'.split(',')}") List<String> admins,
+            StatisticService statisticService
             ) {
         this.commandContainer = new CommandContainer(
                 new SendBotMessageServiceImpl(this),
                 telegramUserService,
                 javarushGroupClient,
                 groupSubService,
-                admins);
+                admins,
+                statisticService);
     }
     @Override
     public void onUpdateReceived(Update update) {
         if (update.hasMessage() && update.getMessage().hasText()) {
             String message = update.getMessage().getText().trim();
+            String username = update.getMessage().getFrom().getUserName();
             if (message.startsWith(COMMAND_PREFIX)) {
                 String commandIdentifier = message.split(" ")[0].toLowerCase();
 

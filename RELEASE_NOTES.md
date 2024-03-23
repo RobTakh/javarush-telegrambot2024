@@ -21,3 +21,6 @@
 
 ## snapshot 0.7.0
 * added ability to send notifications for client of bot with new articles of subscription group
+
+## snapshot 0.8.0
+* added stat admin command for analysing the activity of clients and the subscription activity

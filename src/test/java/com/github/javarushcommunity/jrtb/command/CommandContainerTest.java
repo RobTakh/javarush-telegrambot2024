@@ -3,6 +3,7 @@ package com.github.javarushcommunity.jrtb.command;
 import com.github.javarushcommunity.jrtb.javarushclient.JavarushGroupClient;
 import com.github.javarushcommunity.jrtb.service.GroupSubService;
 import com.github.javarushcommunity.jrtb.service.SendBotMessageService;
+import com.github.javarushcommunity.jrtb.service.StatisticService;
 import com.github.javarushcommunity.jrtb.service.TelegramUserService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -24,12 +25,14 @@ public class CommandContainerTest {
         TelegramUserService telegramUserService = Mockito.mock(TelegramUserService.class);
         JavarushGroupClient javarushGroupClient = Mockito.mock(JavarushGroupClient.class);
         GroupSubService groupSubService = Mockito.mock(GroupSubService.class);
+        StatisticService statisticService = Mockito.mock(StatisticService.class);
         commandContainer = new CommandContainer(
                 sendBotMessageService,
                 telegramUserService,
                 javarushGroupClient,
                 groupSubService,
-                Collections.singletonList("username")
+                Collections.singletonList("username"),
+                statisticService
         );
     }
 

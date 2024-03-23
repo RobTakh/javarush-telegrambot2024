@@ -4,6 +4,7 @@ import com.github.javarushcommunity.jrtb.command.annotation.AdminCommand;
 import com.github.javarushcommunity.jrtb.javarushclient.JavarushGroupClient;
 import com.github.javarushcommunity.jrtb.service.GroupSubService;
 import com.github.javarushcommunity.jrtb.service.SendBotMessageService;
+import com.github.javarushcommunity.jrtb.service.StatisticService;
 import com.github.javarushcommunity.jrtb.service.TelegramUserService;
 
 import java.util.HashMap;
@@ -24,7 +25,8 @@ public class CommandContainer {
             TelegramUserService telegramUserService,
             JavarushGroupClient javarushGroupClient,
             GroupSubService groupSubService,
-            List<String> admins
+            List<String> admins,
+            StatisticService statisticService
     ) {
         this.admins = admins;
         commandHashMap = new HashMap<>();
@@ -32,7 +34,7 @@ public class CommandContainer {
         commandHashMap.put(STOP.getCommandName(), new StopCommand(sendBotMessageService, telegramUserService));
         commandHashMap.put(HELP.getCommandName(), new HelpCommand(sendBotMessageService));
         commandHashMap.put(NO.getCommandName(), new NoCommand(sendBotMessageService));
-        commandHashMap.put(STAT.getCommandName(), new StatCommand(sendBotMessageService, telegramUserService));
+        commandHashMap.put(STAT.getCommandName(), new StatCommand(sendBotMessageService, statisticService));
         commandHashMap.put(ADD_GROUP_SUB.getCommandName(), new AddGroupSubCommand(sendBotMessageService, javarushGroupClient, groupSubService));
         commandHashMap.put(LIST_GROUP_SUB.getCommandName(), new ListGroupSubCommand(sendBotMessageService, telegramUserService));
         commandHashMap.put(DELETE_GROUP_SUB.getCommandName(), new DeleteGroupSubCommand(sendBotMessageService, telegramUserService, groupSubService));
@@ -50,7 +52,7 @@ public class CommandContainer {
                 return unknownCommand;
             }
         }
-        return unknownCommand;
+        return orDefault;
     }
 
     private boolean isAdminCommand(Command command) {
